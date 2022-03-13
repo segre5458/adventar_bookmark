@@ -7,14 +7,6 @@
     right: 10px;
 }
 
-/* .styled:hover {
-    color: rgba(255, 0, 0, 1);
-} */
-
-/* .styled:active {
-    color: rgba(255, 0, 0, 1);
-} */
-
 .styled.isActive{
-    color: rgba(255, 0, 0, 1);
+    color: orange;
 }
