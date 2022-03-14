@@ -4,7 +4,7 @@ jQuery(function ($) {
   $(".favorite").click(function () {
     $(this).toggleClass('isActive');
     if ($(this).css("color") == "rgb(255, 165, 0)") {
-      $(".item").prop("class", "item fav");
+      $(".isActive").parent().parent().prop("class", "item fav");
     }
   })
 
@@ -12,9 +12,11 @@ jQuery(function ($) {
     if (!($('#BtnBookMark').length)) {
       $(".loginMenu").append('<li data-v-69b3dcd9 id="bookMark"><button data-v-69b3dcd9 id="BtnBookMark">★ ブックマーク</button></li>');
       if ($(".item").prop("class") == "item fav") {
-        var refer = $(".fav > .title").prop("href")
+        var refer = $(".fav > .title").prop("href");
+        var title = $(".fav > .title").text();
         console.log(refer);
-        var content = '<a data-v-69b3dcd9 href=' + refer + '>hoge</a>';
+        console.log(title);
+        var content = '<a data-v-69b3dcd9 href=' + refer + '>' + title + '</a>';
         $("#bookMark").append(content);
       }
     }
