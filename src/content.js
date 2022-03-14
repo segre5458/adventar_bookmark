@@ -14,8 +14,6 @@ jQuery(function ($) {
       if ($(".item").prop("class") == "item fav") {
         var refer = $(".fav > .title").prop("href");
         var title = $(".fav > .title").text();
-        console.log(refer);
-        console.log(title);
         var content = '<a data-v-69b3dcd9 href=' + refer + '>' + title + '</a>';
         $("#bookMark").append(content);
       }
