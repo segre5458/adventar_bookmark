@@ -3,6 +3,9 @@
 	"version": "0.0.1",
 	"manifest_version": 3,
 	"description": "Add Bookmark in Adventer site",
+	"permissions":[
+		"storage"
+	],
 	"content_scripts": [{
 		"matches": ["https://adventar.org/*"],
 		"css": [
