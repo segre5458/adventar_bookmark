@@ -1,4 +1,5 @@
 jQuery(function ($) {
+  // 星マークを追加
   $(".info").append('<span data-v-f3ac38c0 class="favorite styled" id="button">★</span>');
   // ブックマーク済みの記事をブックマーク
   $(".title").each(function () {
