@@ -14,12 +14,14 @@ jQuery(function ($) {
   $(".menuBtn").click(function () {
     if (!($('#BtnBookMark').length)) {
       $(".loginMenu").append('<li data-v-69b3dcd9 id="bookMark"><button data-v-69b3dcd9 id="BtnBookMark">★ ブックマーク</button></li>');
-      var refer = $(".fav > .title").prop("href");
-      var title = $(".fav > .title").text();
-      console.log(refer[0]);
-      console.log("hoge");
-      var content = '<a data-v-69b3dcd9 href=' + refer + '>' + title + '</a>';
-      $("#bookMark").append(content);
+      $(".fav").each(function () {
+        var refer = $(this).find(".title").prop("href");
+        var title = $(this).find(".title").text();
+        console.log(refer);
+        console.log("hoge");
+        var content = '<a data-v-69b3dcd9 href=' + refer + '>' + title + '</a>';
+        $("#bookMark").append(content);
+      })
     }
   })
 });
