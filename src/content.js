@@ -5,8 +5,8 @@ jQuery(function ($) {
   $(".title").each(function () {
     let title = $(this).text();
     let active = $(this).parent().find(".info").find(".favorite");
-    chrome.storage.local.get("BookMarkContent", function (value) {
-      if (title == value.BookMarkContent.title) {
+    chrome.storage.local.get("1", function (value) {
+      if (title == value[1].title) {
         active.toggleClass('isActive');
       }
     });
@@ -46,21 +46,6 @@ jQuery(function ($) {
     //ブックマークタグがない場合は追加
     if (!($('#BtnBookMark').length)) {
       $(".loginMenu").append('<li data-v-69b3dcd9 id="bookMark"><button data-v-69b3dcd9 id="BtnBookMark">★ ブックマーク</button></li>');
-
-      //ブックマークした記事をブックマークタグ以下に追加
-      // $(".fav").each(function () {
-      //   chrome.storage.local.get("", function (result) {
-      //     let refer = result.href;
-      //     let title = result.title;
-      //     console.log(title);
-      //     console.log(refer);
-      //     let content = '<a data-v-69b3dcd9 href=' + refer + '>' + title + '</a>';
-      //     $("#bookMark").append(content);
-      //   });
-      //   console.log("hoge");
-      //   //let content = '<a data-v-69b3dcd9 href=' + refer + '>' + title + '</a>';
-      //   //$("#bookMark").append(content);
-      // });
       for(let article=1; article<=cnt; article++){
         chrome.storage.local.get(String(article),function(result){
           let refer = result[article].href;
