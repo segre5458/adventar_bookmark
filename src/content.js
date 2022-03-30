@@ -19,10 +19,28 @@ jQuery(function ($) {
     $(this).toggleClass('isActive');
     if ($(this).css("color") == "rgb(255, 165, 0)") {
       $(this).parent().parent().prop("class", "item fav");
-      var refer = $(this).parent().parent().find(".title").prop("href");
-      var title = $(this).parent().parent().find(".title").text();
-      chrome.storage.local.set({ "BookMarkContent": { "href": refer, "title": title } }, function () { });
     }
+    // bookmark用json生成
+    //var data = "[";
+    var data = "{";
+    var cnt = 1;
+    $(".fav").each(function () {
+      var refer = $(this).find(".title").prop("href");
+      var title = $(this).find(".title").text();
+      var datas = "\""+cnt+"\":";
+      var js = { "href": refer, "title": title };
+      var addData = JSON.stringify(js);
+      data += datas + addData + ",";
+      cnt++;
+    })
+    var json = data.slice(0, -1);
+    json += "}";
+    console.log(json);
+    var obj = JSON.parse(json);
+    console.log(obj);
+    chrome.storage.local.set(obj, function () {
+      console.log("hoghe");
+    });
   })
 
   $(".menuBtn").click(function () {
@@ -32,11 +50,9 @@ jQuery(function ($) {
 
       //ブックマークした記事をブックマークタグ以下に追加
       $(".fav").each(function () {
-        // var refer = $(this).find(".title").prop("href");
-        // var title = $(this).find(".title").text();
-        chrome.storage.local.get("BookMarkContent", function (result) {
-          var refer = result.BookMarkContent.href;
-          var title = result.BookMarkContent.title;
+        chrome.storage.local.get("", function (result) {
+          var refer = result.href;
+          var title = result.title;
           console.log(title);
           console.log(refer);
           var content = '<a data-v-69b3dcd9 href=' + refer + '>' + title + '</a>';
