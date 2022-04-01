@@ -24,6 +24,7 @@ jQuery(function ($) {
       $(this).parent().parent().prop("class", "item fav");
     }
     // bookmark用json生成
+    // TO DO: bookmarkを外したときjsonから削除
     cnt = 0;
     let data = "{";
     $(".fav").each(function () {
