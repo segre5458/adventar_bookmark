@@ -2,15 +2,11 @@ jQuery(function ($) {
   // 星マークを追加
   $(".info").append('<span data-v-f3ac38c0 class="favorite styled" id="button">★</span>');
   // ブックマーク済みの記事をブックマーク
-  $(".title").each(function () {
-    let title = $(this).text();
-    let active = $(this).parent().find(".info").find(".favorite");
-    chrome.storage.local.get("1", function (value) {
-      if (title == value[1].title) {
-        active.toggleClass('isActive');
-      }
-    });
-  });
+  chrome.storage.local.get(String(2),function(result){
+    let title = result[2].title;
+    console.log(refer);
+    $("a:contains(" + title + ")").parent().find(".info").find(".favorite").toggleClass('isActive');
+  })
 
   let cnt = 0;
   $(".favorite").click(function () {
@@ -22,7 +18,6 @@ jQuery(function ($) {
       $(this).parent().parent().prop("class", "item fav");
     }
     // bookmark用json生成
-    //let data = "[";
     cnt = 0;
     let data = "{";
     $(".fav").each(function () {
