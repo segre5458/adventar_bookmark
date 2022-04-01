@@ -2,11 +2,17 @@ jQuery(function ($) {
   // 星マークを追加
   $(".info").append('<span data-v-f3ac38c0 class="favorite styled" id="button">★</span>');
   // ブックマーク済みの記事をブックマーク
-  chrome.storage.local.get(String(2),function(result){
-    let title = result[2].title;
-    console.log(refer);
-    $("a:contains(" + title + ")").parent().find(".info").find(".favorite").toggleClass('isActive');
-  })
+  let title = "";
+  for (let i = 1; i <= 100; i++) {
+    chrome.storage.local.get(String(i), function (result) {
+      try {
+        title = result[i].title;
+        $("a:contains(" + title + ")").parent().find(".info").find(".favorite").toggleClass('isActive');
+      }
+      catch (error) {
+      }
+    })
+  }
 
   let cnt = 0;
   $(".favorite").click(function () {
@@ -41,8 +47,8 @@ jQuery(function ($) {
     //ブックマークタグがない場合は追加
     if (!($('#BtnBookMark').length)) {
       $(".loginMenu").append('<li data-v-69b3dcd9 id="bookMark"><button data-v-69b3dcd9 id="BtnBookMark">★ ブックマーク</button></li>');
-      for(let article=1; article<=cnt; article++){
-        chrome.storage.local.get(String(article),function(result){
+      for (let article = 1; article <= cnt; article++) {
+        chrome.storage.local.get(String(article), function (result) {
           let refer = result[article].href;
           let title = result[article].title;
           console.log(refer);
