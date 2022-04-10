@@ -52,14 +52,19 @@ jQuery(function ($) {
     //ブックマークタグがない場合は追加
     if (!($('#BtnBookMark').length)) {
       $(".loginMenu").append('<li data-v-69b3dcd9 id="bookMark"><button data-v-69b3dcd9 id="BtnBookMark">★ ブックマーク</button></li>');
-      for (let article = 1; article <= cnt; article++) {
+      for (let article = 1; article <= 100; article++) {
         chrome.storage.local.get(String(article), function (result) {
-          let refer = result[article].href;
-          let title = result[article].title;
-          console.log(refer);
-          console.log(title);
-          let content = '<a data-v-69b3dcd9 href=' + refer + '>' + title + '</a>';
-          $("#bookMark").append(content);
+          // TO Do: refreがundefinedの場合のbread
+          try {
+            let refer = result[article].href;
+            let title = result[article].title;
+            console.log(refer);
+            console.log(title);
+            let content = '<a data-v-69b3dcd9 href=' + refer + '>' + title + '</a>';
+            $("#bookMark").append(content);
+          }
+          catch (error) {
+          }
         })
       }
     }
