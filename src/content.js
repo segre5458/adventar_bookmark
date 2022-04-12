@@ -28,6 +28,9 @@ jQuery(function ($) {
     if ($(this).css("color") == "rgb(255, 165, 0)") {
       $(this).parent().parent().prop("class", "item fav");
     }
+    //既存のjson削除
+    chrome.storage.local.clear(function(){
+    })
     // bookmark用json生成
     cnt = 0;
     let data = "{";
@@ -54,7 +57,7 @@ jQuery(function ($) {
       $(".loginMenu").append('<li data-v-69b3dcd9 id="bookMark"><button data-v-69b3dcd9 id="BtnBookMark">★ ブックマーク</button></li>');
       for (let article = 1; article <= 100; article++) {
         chrome.storage.local.get(String(article), function (result) {
-          // TO Do: refreがundefinedの場合のbread
+          // TO Do: referがundefinedの場合のbreak
           try {
             let refer = result[article].href;
             let title = result[article].title;
